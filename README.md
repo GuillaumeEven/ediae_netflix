@@ -15,8 +15,8 @@ We work from the dev branch, creating branch for each feature.
 - [ ] Suscripcion
 
 ## Core to implement
-- [ ] pom.xml
-- [ ] env/env_template
+- [x] pom.xml
+- [x] env/env_template
 - [ ] Main
 - [ ] DBManager
 - [ ] Daos

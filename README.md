@@ -1,5 +1,7 @@
 # Roadmap
 
+We work from the dev branch, creating branch for each feature.
+
 ## Models to implement
 - [ ] Filmografia
 - [ ] Acceso

@@ -10,7 +10,7 @@ package com.ediae.netflix;
  *
  * @author sensei
  */
-public class Ediae_netflix {
+public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");

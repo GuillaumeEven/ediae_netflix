@@ -4,6 +4,8 @@
 
 package com.ediae.netflix;
 
+
+// TODO quit this and change class name to Main
 /**
  *
  * @author sensei

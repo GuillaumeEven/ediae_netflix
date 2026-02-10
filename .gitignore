@@ -1,0 +1,22 @@
+### Environnement
+.env
+
+### Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### NetBeans
+/nbproject/private/
+/build/
+/dist/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+/.nb-gradle-properties
+/nbactions.xml
+/.nb-gradle-properties
+/.netbeans/
+/.nbproject/
+
+### Logs
+*.log

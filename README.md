@@ -1,49 +1,48 @@
+# 🎬 Ediae Netflix Backend
 
+## 📖 Overview
 
-# Ediae Netflix Backend
+This project was developed as part of an application development training at **Ediae**, during the Java backend course.
 
-## Context
+The goal is to manage a database for a video content website (like Netflix): management of movies, series, users, subscriptions, and more.
 
-This project was developed as part of an application development training at Ediae, during the Java backend course.
+---
 
-## Project
-
-The goal is to manage a database for a video content website (like Netflix): management of movies, series, users, subscriptions, etc.
-
-## Technologies used
+## 💡 Technologies Used
 
 - Java
 - Maven
 - JDBC (database connection)
 
-## Installation
+---
 
-1. Clone the repository.
-   
+## 🚀 Installation
+
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/GuillaumeEven/ediae_netflix.git
+   git clone https://github.com/GuillaumeEven/ediae_netflix.git 
    ```
 
-2. Install Java (recommended version: 17+).
-3. Install Maven.
-4. Create the database: the SQL creation script is included in the project (e.g., `/src/main/resources/create_db.sql`).
-   
-   Example command:
+2. **Install Java** (recommended version: 17+)
+3. **Install Maven**
+4. **Create the database**: the SQL creation script is included in the project (e.g., `/src/main/resources/create_db.sql`).
+   <br>Example command:
    ```sql
    mysql -u <user> -p <database_name> < src/main/resources/create_db.sql
    ```
-   
-5. Configure the database connection in the configuration file (e.g., copy `env/env_template` to `.env`).
-6. Build the project:
+5. **Configure the database connection** in the configuration file (e.g., copy `env/env_template` to `.env`)
+6. **Build the project**:
    ```bash
    mvn clean install
    ```
-7. Run the application:
+7. **Run the application**:
    ```bash
    mvn exec:java -Dexec.mainClass="com.ediae.netflix.Main"
    ```
 
-## Project structure
+---
+
+## 🗂️ Project Structure
 
 - `Main.java`: application entry point
 - `daos/`: data access objects
@@ -52,19 +51,17 @@ The goal is to manage a database for a video content website (like Netflix): man
 
 ---
 
-# Roadmap
+## 🛣️ Roadmap
 
 We work from the `dev` branch, creating a branch for each feature.
 
-## Core to implement
+### Core to implement
 - [x] pom.xml
 - [x] env/env_template
 - [ ] Main
-- [ ] DBManager
-- [ ] Daos
-  - [ ] FilmografiaDao
+- [x] DBManager
 
-## Models to implement
+### Models to implement
 - [x] Filmografia
 - [x] Acceso
 - [x] Clasificacion
@@ -76,7 +73,7 @@ We work from the `dev` branch, creating a branch for each feature.
 - [x] Reparto
 - [x] Suscripcion
 
-## DAOs to implement
+### DAOs to implement
 - [x] BaseDao
 - [x] FilmografiaDao extends BaseDao
 - [ ] AccesoDao extends BaseDao
@@ -89,7 +86,7 @@ We work from the `dev` branch, creating a branch for each feature.
 - [ ] RepartoDao extends BaseDao
 - [ ] SuscripcionDao extends BaseDao
 
-## Features to implement
+### Features to implement
 - [ ] filmografia table
   - [ ] Read all entries
   - [ ] Read one entry by id

@@ -1,6 +1,6 @@
 package com.ediae.netflix.daos;
 
-import com.ediae.netflix.models.Filmografia;
+import models.Filmografia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

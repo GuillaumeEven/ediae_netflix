@@ -1,5 +1,6 @@
 package com.ediae.netflix.daos;
 
+import com.ediae.netflix.utils.DBManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

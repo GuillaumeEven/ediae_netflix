@@ -6,9 +6,7 @@ We work from the dev branch, creating branch for each feature.
 - [x] pom.xml
 - [x] env/env_template
 - [ ] Main
-- [ ] DBManager
-- [ ] Daos
-  - [ ] FilmografiaDao
+- [x] DBManager
 
 ## Models to implement
 - [x] Filmografia

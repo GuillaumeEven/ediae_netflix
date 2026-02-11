@@ -3,16 +3,16 @@
 We work from the dev branch, creating branch for each feature.
 
 ## Models to implement
-- [ ] Filmografia
-- [ ] Acceso
-- [ ] Clasificacion
-- [ ] Cuenta
-- [ ] Genero
-- [ ] Factura
-- [ ] Film_Genero
-- [ ] Pais
-- [ ] Reparto
-- [ ] Suscripcion
+- [x] Filmografia
+- [x] Acceso
+- [x] Clasificacion
+- [x] Cuenta
+- [x] Genero
+- [x] Factura
+- [x] Film_Genero
+- [x] Pais
+- [x] Reparto
+- [x] Suscripcion
 
 ## Core to implement
 - [x] pom.xml

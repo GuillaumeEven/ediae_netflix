@@ -49,21 +49,21 @@ public class FilmografiaDao extends BaseDao<Filmografia, Integer> {
 
     @Override
     protected void bindInsert(PreparedStatement stmt, Filmografia entity) throws SQLException {
-        stmt.setString(1, entity.gettitulo());
-        stmt.setDate(2, entity.getfecha_estreno());
-        stmt.setString(3, entity.getsinopsis());
-        stmt.setInt(4, entity.getclasificacion());
-        stmt.setInt(5, entity.getpais());
+        stmt.setString(1, entity.getTitulo());
+        stmt.setDate(2, entity.getFecha_estreno());
+        stmt.setString(3, entity.getSinopsis());
+        stmt.setInt(4, entity.getClasificacion());
+        stmt.setInt(5, entity.getPais());
     }
 
     @Override
     protected void bindUpdate(PreparedStatement stmt, Filmografia entity) throws SQLException {
-        stmt.setString(1, entity.gettitulo());
-        stmt.setDate(2, entity.getfecha_estreno());
-        stmt.setString(3, entity.getsinopsis());
-        stmt.setInt(4, entity.getclasificacion());
-        stmt.setInt(5, entity.getpais());
-        stmt.setInt(6, entity.getid());
+        stmt.setString(1, entity.getTitulo());
+        stmt.setDate(2, entity.getFecha_estreno());
+        stmt.setString(3, entity.getSinopsis());
+        stmt.setInt(4, entity.getClasificacion());
+        stmt.setInt(5, entity.getPais());
+        stmt.setInt(6, entity.getId());
     }
 
     @Override
@@ -82,12 +82,6 @@ public class FilmografiaDao extends BaseDao<Filmografia, Integer> {
             rs.getInt("clasificacion_id"),
             rs.getInt("pais_id")
         );
-        // filmo.setid(rs.getInt("id"));
-        // filmo.settitulo(rs.getString("titulo"));
-        // filmo.setfecha_estreno(rs.getDate("fecha_estreno"));
-        // filmo.setsinopsis(rs.getString("sinopsis"));
-        // filmo.setclasificacion(rs.getInt("clasificacion_id"));
-        // filmo.setpais(rs.getInt("pais_id"));
         return filmo;
     }
 

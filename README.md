@@ -2,6 +2,14 @@
 
 We work from the dev branch, creating branch for each feature.
 
+## Core to implement
+- [x] pom.xml
+- [x] env/env_template
+- [ ] Main
+- [ ] DBManager
+- [ ] Daos
+  - [ ] FilmografiaDao
+
 ## Models to implement
 - [ ] Filmografia
 - [ ] Acceso
@@ -14,13 +22,18 @@ We work from the dev branch, creating branch for each feature.
 - [ ] Reparto
 - [ ] Suscripcion
 
-## Core to implement
-- [x] pom.xml
-- [x] env/env_template
-- [ ] Main
-- [ ] DBManager
-- [ ] Daos
-  - [ ] FilmografiaDao
+## Daos to implement
+- [x] BaseDao
+- [x] FilmografiaDao extends BaseDao
+- [ ] AccesoDao extends BaseDao
+- [ ] ClasificacionDao extends BaseDao
+- [ ] CuentaDao extends BaseDao
+- [ ] GeneroDao extends BaseDao
+- [ ] FacturaDao extends BaseDao
+- [ ] Film_GeneroDao extends BaseDao
+- [ ] PaisDao extends BaseDao
+- [ ] RepartoDao extends BaseDao
+- [ ] SuscripcionDao extends BaseDao
 
 ## Features to implement
 - [ ] filmografia table

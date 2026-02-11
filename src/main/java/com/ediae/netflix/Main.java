@@ -1,25 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.ediae.netflix;
+
+import com.ediae.netflix.utils.DBManager;
+
 
 public class Main {
 
     public static void main(String[] args) {
+
         System.out.println("Hello World!");
 
-        System.out.println("Test de conexión a la base de datos:");
+        System.out.println("Database connection test:");
         DBManager dbManager = new DBManager();
         if (dbManager.getConnection() != null) {
-            System.out.println("¡Conexión exitosa a la base de datos!");
+            System.out.println("Successful connection to the database!");
         } else {
-            System.out.println("Error al conectar a la base de datos.");
+            System.out.println("Error connecting to the database.");
         }
 
         System.out.println("---------------------------------------------");
 
-        System.out.println("¡Bienvenido al proyecto de Netflix! Aquí podrás gestionar tu catálogo de películas, series y usuarios de manera eficiente. ¡Disfruta explorando y creando contenido para tu plataforma de streaming!");
+        System.out.println("Welcome to the Netflix project! Here you can efficiently manage your catalog of movies, series, and users. Enjoy exploring and creating content for your streaming platform!");
 
         System.out.println("---------------------------------------------");
     }

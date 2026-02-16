@@ -1,10 +1,13 @@
 package com.ediae.netflix.utils;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import models.Filmografia;
 import okhttp3.OkHttpClient;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+
 import okhttp3.Request;
 import okhttp3.Response;
 import com.google.gson.JsonObject;
@@ -17,7 +20,8 @@ public class ConnexionTmdb {
     private static final String API_URL = DOTENV.get("APIURL", "https://api.themoviedb.org/3");
 
 
-    public static void searchMovie(String query) throws IOException{
+    public static ArrayList<Filmografia> searchMovie(String query) throws IOException{
+        ArrayList<Filmografia> filmografias = new ArrayList<>();
         OkHttpClient client = new OkHttpClient();
 
         String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
@@ -33,7 +37,7 @@ public class ConnexionTmdb {
             }
 
             String responseBody = response.body().string();
-            System.out.println(responseBody);
+            // System.out.println(responseBody);
 
             JsonObject jsonResponse = JsonParser.parseString(responseBody).getAsJsonObject();
 
@@ -50,10 +54,19 @@ public class ConnexionTmdb {
 
             for (int i = 0; i < results.size(); i++) {
                 JsonObject movie = results.get(i).getAsJsonObject();
-                String title = movie.get("title").getAsString();
-                String releaseDate = movie.get("release_date").getAsString();
-                System.out.println("Title: " + title + ", Release Date: " + releaseDate);
+                Filmografia filmografia = new Filmografia(
+                    movie.get("title").getAsString(),
+                    movie.get("release_date").getAsString(),
+                    movie.get("overview").getAsString(),
+                    1, // Placeholder for pais_id
+                    1  // Placeholder for clasificacion_id
+                );
+                // String title = movie.get("title").getAsString();
+                // String releaseDate = movie.get("release_date").getAsString();
+                // System.out.println("Title: " + title + ", Release Date: " + releaseDate);
+                filmografias.add(filmografia);
             }
         }
+        return filmografias;
     }
 }

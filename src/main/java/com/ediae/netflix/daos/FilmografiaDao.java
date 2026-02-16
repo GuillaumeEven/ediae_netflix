@@ -52,8 +52,8 @@ public class FilmografiaDao extends BaseDao<Filmografia, Integer> {
         stmt.setString(1, entity.getTitulo());
         stmt.setDate(2, entity.getFecha_estreno());
         stmt.setString(3, entity.getSinopsis());
-        stmt.setInt(4, entity.getClasificacion());
-        stmt.setInt(5, entity.getPais());
+        stmt.setInt(4, entity.getClasificacion_id());
+        stmt.setInt(5, entity.getPais_id());
     }
 
     @Override
@@ -61,8 +61,8 @@ public class FilmografiaDao extends BaseDao<Filmografia, Integer> {
         stmt.setString(1, entity.getTitulo());
         stmt.setDate(2, entity.getFecha_estreno());
         stmt.setString(3, entity.getSinopsis());
-        stmt.setInt(4, entity.getClasificacion());
-        stmt.setInt(5, entity.getPais());
+        stmt.setInt(4, entity.getClasificacion_id());
+        stmt.setInt(5, entity.getPais_id());
         stmt.setInt(6, entity.getId());
     }
 
@@ -88,7 +88,7 @@ public class FilmografiaDao extends BaseDao<Filmografia, Integer> {
     @Override
     protected void setGeneratedId(Filmografia entity, Object generatedId) {
         if (generatedId instanceof Number) {
-            entity.setid(((Number) generatedId).intValue());
+            entity.setId(((Number) generatedId).intValue());
         }
     }
 }

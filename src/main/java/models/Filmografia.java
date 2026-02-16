@@ -21,6 +21,18 @@ public class Filmografia {
         this.clasificacion_id = clasificacion_id;
     }
 
+    public Filmografia(String titulo, String fecha_estreno, String sinopsis, int pais_id, int clasificacion_id) {
+        this.titulo = titulo;
+        if (fecha_estreno == null || fecha_estreno.isEmpty()) {
+            this.fecha_estreno = null; // Handle empty or null date
+        } else {
+            this.fecha_estreno = Date.valueOf(fecha_estreno);
+        }
+        this.sinopsis = sinopsis;
+        this.pais_id = pais_id;
+        this.clasificacion_id = clasificacion_id;
+    }
+
     public int getId() {
         return id;
     }
@@ -68,12 +80,12 @@ public class Filmografia {
     public void setClasificacion_id(int clasificacion_id) {
         this.clasificacion_id = clasificacion_id;
     }
-    
+
 
     @Override
     public String toString() {
         return "Filmografia{" + "id=" + id + ", titutlo=" + titulo + ", fecha_estreno=" + fecha_estreno + ", sinopsis=" + sinopsis + ", pais_id=" + pais_id + ", clasificacion_id=" + clasificacion_id + '}';
     }
-    
-    
+
+
 }

@@ -7,8 +7,8 @@ We work from the dev branch, creating branch for each feature.
 - [x] env/env_template
 - [ ] Main
 - [ ] DBManager
-- [ ] Daos
-  - [ ] FilmografiaDao
+- [x] Daos
+  - [x] FilmografiaDao
 
 ## Models to implement
 - [x] Filmografia

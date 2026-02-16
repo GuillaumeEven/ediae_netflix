@@ -1,100 +1,96 @@
 package com.ediae.netflix.daos;
 
-import com.ediae.netflix.models.Filmografia;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.List;
+import models.Filmografia;
 
-public class FilmografiaDao extends BaseDao<Filmografia, Integer> {
+public class FilmografiaDAO extends DAO<Filmografia> {
 
-    private static final String INSERT = "INSERT INTO Filmografia (titulo, fecha_estreno, sinopsis, clasificacion_id, pais_id) VALUES (?, ?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE Filmografia SET titulo = ?, fecha_estreno = ?, sinopsis = ?, clasificacion_id = ?, pais_id = ? WHERE id = ?";
-    private static final String DELETE = "DELETE FROM Filmografia WHERE id = ?";
-    private static final String SELECT_ALL = "SELECT * FROM Filmografia";
-    private static final String SELECT_BY_ID = "SELECT * FROM Filmografia WHERE id = ?";
-
-    public FilmografiaDao() {
-        super();
-    }
-
-    public FilmografiaDao(Connection connection) {
-        super(connection);
-    }
-
+    // Map a ResultSet row to a Filmografia model instance
     @Override
-    protected String getInsertSql() {
-        return INSERT;
-    }
-
-    @Override
-    protected String getUpdateSql() {
-        return UPDATE;
-    }
-
-    @Override
-    protected String getDeleteSql() {
-        return DELETE;
-    }
-
-    @Override
-    protected String getSelectAllSql() {
-        return SELECT_ALL;
-    }
-
-    @Override
-    protected String getSelectByIdSql() {
-        return SELECT_BY_ID;
-    }
-
-    @Override
-    protected void bindInsert(PreparedStatement stmt, Filmografia entity) throws SQLException {
-        stmt.setString(1, entity.gettitulo());
-        stmt.setDate(2, entity.getfecha_estreno());
-        stmt.setString(3, entity.getsinopsis());
-        stmt.setInt(4, entity.getclasificacion());
-        stmt.setInt(5, entity.getpais());
-    }
-
-    @Override
-    protected void bindUpdate(PreparedStatement stmt, Filmografia entity) throws SQLException {
-        stmt.setString(1, entity.gettitulo());
-        stmt.setDate(2, entity.getfecha_estreno());
-        stmt.setString(3, entity.getsinopsis());
-        stmt.setInt(4, entity.getclasificacion());
-        stmt.setInt(5, entity.getpais());
-        stmt.setInt(6, entity.getid());
-    }
-
-    @Override
-    protected void bindId(PreparedStatement stmt, Integer id) throws SQLException {
-        stmt.setInt(1, id);
-    }
-
-    // The mapRow method is used to convert a ResultSet row into a Filmografia object
-    @Override
-    protected Filmografia mapRow(ResultSet rs) throws SQLException {
-        Filmografia filmo = new Filmografia(
-            rs.getInt("id"),
-            rs.getString("titulo"),
-            rs.getDate("fecha_estreno"),
-            rs.getString("sinopsis"),
-            rs.getInt("clasificacion_id"),
-            rs.getInt("pais_id")
+    protected Filmografia fromResultSet(ResultSet rs) throws SQLException {
+        return new Filmografia(
+                rs.getInt("id"),
+                rs.getString("titulo"),
+                rs.getDate("fecha_estreno"),
+                rs.getString("sinopsis"),
+                rs.getInt("pais_id"),
+                rs.getInt("clasificacion_id")
         );
-        // filmo.setid(rs.getInt("id"));
-        // filmo.settitulo(rs.getString("titulo"));
-        // filmo.setfecha_estreno(rs.getDate("fecha_estreno"));
-        // filmo.setsinopsis(rs.getString("sinopsis"));
-        // filmo.setclasificacion(rs.getInt("clasificacion_id"));
-        // filmo.setpais(rs.getInt("pais_id"));
-        return filmo;
     }
 
+    // Bind Filmografia fields to a prepared statement in the expected order
     @Override
-    protected void setGeneratedId(Filmografia entity, Object generatedId) {
-        if (generatedId instanceof Number) {
-            entity.setid(((Number) generatedId).intValue());
+    protected int setParams(PreparedStatement ps, Filmografia obj, int startIndex) throws SQLException {
+        ps.setString(startIndex++, obj.getTitulo());
+        ps.setDate(startIndex++, obj.getFecha_estreno());
+        ps.setString(startIndex++, obj.getSinopsis());
+        ps.setInt(startIndex++, obj.getPais_id());
+        ps.setInt(startIndex++, obj.getClasificacion_id());
+        return startIndex;
+    }
+
+    // SQL used by insert() in BaseDAO. Includes all non-ID fields.
+    @Override
+    protected String getInsertSQL() {
+        return "INSERT INTO filmografia (titulo, fecha_estreno, sinopsis, pais_id, clasificacion_id)";
+    }
+
+    // SQL used by update() in BaseDAO. Updates all fields (except id, which is typically in WHERE).
+    @Override
+    protected String getUpdateSQL() {
+        return "UPDATE filmografia SET titulo = ?, fecha_estreno = ?, sinopsis = ?, pais_id = ?, clasificacion_id = ?";
+    }
+
+    // Helper for BaseDAO to fetch the primary key from the entity
+    @Override
+    protected int getId(Filmografia obj) {
+        return obj.getId();
+    }
+
+    // Table name used by generic SQL in BaseDAO
+    @Override
+    protected String getTableName() {
+        return "filmografia";
+    }
+
+    // Number of parameters for insert/update (excluding id)
+    @Override
+    protected int getParamCount(Filmografia obj) {
+        return 5; // titulo, fecha_estreno, sinopsis, pais_id, clasificacion_id
+    }
+
+    // ============================
+    // BONUS: Convenience methods
+    // ============================
+    /**
+     * Convenience method to insert a film without constructing the Filmografia
+     * object externally. Keeps a single place to create the entity and reuse
+     * insert(...) from BaseDAO.
+     */
+    public void directInsert(String titulo, Date fecha, String sinopsis, int paisId, int clasifId, Connection con)
+            throws SQLException {
+        Filmografia peli = new Filmografia(0, titulo, fecha, sinopsis, paisId, clasifId);
+        insert(peli, con); // Uses inherited BaseDAO.insert
+    }
+
+    /**
+     * Convenience method for console display. Prints a simple list of films
+     * with essential fields for quick inspection.
+     */
+    public void printAll(Connection con) throws SQLException {
+        System.out.println("=== PELICULAS ===");
+        List<Filmografia> pelis = listAll(con); // Uses inherited BaseDAO.listAll
+        if (pelis.isEmpty()) {
+            System.out.println("No hay peliculas");
+            System.out.println();
+            return;
         }
+        for (Filmografia p : pelis) {
+            System.out.printf("ID:%d | %s (%s) | Pais:%d | Clasi:%d%n",
+                    p.getId(), p.getTitulo(), p.getFecha_estreno(),
+                    p.getPais_id(), p.getClasificacion_id());
+        }
+        System.out.println("Total: " + pelis.size() + "\\n");
     }
 }

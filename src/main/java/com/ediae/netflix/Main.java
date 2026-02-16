@@ -3,6 +3,8 @@ package com.ediae.netflix;
 import com.mysql.cj.jdbc.AbandonedConnectionCleanupThread;
 import java.sql.Connection;
 import com.ediae.netflix.utils.DBManager;
+import com.ediae.netflix.utils.ConnexionTmdb;
+
 
 
 public class Main {
@@ -10,6 +12,15 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Hello World!");
+
+        System.out.println("---------------------------------------------");
+        System.out.println("Testing API connection:");
+        try {
+            ConnexionTmdb.searchMovie("Inception");
+        } catch (Exception e) {
+            System.err.println("Error while connecting to the TMDB API:");
+            e.printStackTrace();
+        }
 
         System.out.println("Database connection test:");
         DBManager dbManager = new DBManager();
